@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Calculator-React-Native",
+    "slug": "Calculator-React-Native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#1E1E1E",
+    "androidStatusBarColor": "#37517E",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1E1E1E"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": { 
+        "foregroundImage": "./assets/icon2.png",
+        "backgroundColor": "#1E1E1E"
+      }
+    }
+  }
+}
