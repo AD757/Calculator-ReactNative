@@ -9,28 +9,18 @@ export default function App() {
   const [lastNumber, setLastNumber] = useState('');
   const buttons = ['C', 'DEL', '/', 7, 8, 9, '*', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '=']
 
-  function calculator(){
-    const splitNumb = currentNumber.split(' ')
-    const firstNumb = parseFloat(splitNumb[0])
-    const lastNumb = parseFloat(splitNumb[2])
-    const operator = splitNumb[1]
-
-
-  switch(operator){
-    case '+':
-      setCurrentNumber((firstNumb + lastNumb).toString())
+  function calculator() {
+    const operator = currentNumber[currentNumber.length-1];
+    if(operator === '/', operator === '*', operator === '-', operator === '+', operator === '.') {
+      setCurrentNumber(currentNumber)
       return
-    case '-':
-      setCurrentNumber((firstNumb - lastNumb).toString())
+    }
+    else {
+      let result = eval(currentNumber).toString();
+      setCurrentNumber(result)
       return
-    case '/':
-      setCurrentNumber((firstNumb / lastNumb).toString())
-      return
-    case '*':
-      setCurrentNumber((firstNumb * lastNumb).toString())
-      return
+    }
   }
-}
 
   function handleInput(buttonPressed) {
     if(buttonPressed  === '+' || buttonPressed === '-' || buttonPressed === '*' || buttonPressed === '/') {
@@ -55,6 +45,7 @@ export default function App() {
     }
     setCurrentNumber(currentNumber + buttonPressed)
   }
+
 
   const styles = StyleSheet.create({
     results: {
