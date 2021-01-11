@@ -86,13 +86,13 @@ export default function App() {
       flexWrap: 'wrap',
     },
     button: {
-      borderColor: darkMode ? '#3f4d5b' : '#e1e1e1',
+      backgroundColor: darkMode ? '#121212' : '#FFF',
       alignItems: 'center',
       justifyContent: 'center',
-      minWidth: 100,
-      minHeight: 100,
+      minWidth: 82,
+      minHeight: 82,
       flex: 2,
-      marginBottom: 10,
+      margin: 0.5,
       borderRadius: 50,
     },
     textButton: {
