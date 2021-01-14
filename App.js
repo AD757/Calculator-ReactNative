@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 
@@ -46,7 +46,6 @@ export default function App() {
     setCurrentNumber(currentNumber + buttonPressed)
   }
 
-
   const styles = StyleSheet.create({
     results: {
       backgroundColor: darkMode ? '#121212' : '#FFF',
@@ -70,7 +69,7 @@ export default function App() {
     themeButton: {
       backgroundColor: darkMode ? '#FFF' : '#E5E5E5',
       alignSelf: 'flex-start',
-      bottom: '15%',
+      bottom: '10%',
       margin: 15,
       alignItems: 'center',
       justifyContent: 'center',
@@ -80,19 +79,19 @@ export default function App() {
     },
     buttons: {
       backgroundColor: darkMode ? '#121212' : '#FFF',
-      width: "100%",
-      height: "65%",
+      height: '100%',
       flexDirection: 'row',
       flexWrap: 'wrap',
+     
     },
     button: {
-      backgroundColor: darkMode ? '#121212' : '#FFF',
+      borderColor: darkMode ? '#3f4d5b' : '#e1e1e1',
       alignItems: 'center',
       justifyContent: 'center',
       minWidth: 82,
-      minHeight: 82,
+      minHeight: 90,
       flex: 2,
-      margin: 0.5,
+      margin: 1,
       borderRadius: 50,
     },
     textButton: {
@@ -102,6 +101,7 @@ export default function App() {
   })
 
   return(
+    <ScrollView>
     <View>
       <View style={styles.results}>
       <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
@@ -111,6 +111,7 @@ export default function App() {
         <Text style={styles.historyText}>{lastNumber}</Text>
         <Text style={styles.resultText}>{currentNumber}</Text>
       </View>
+
       <View style={styles.buttons}>
         {buttons.map((button) =>
           button === '=' || button === '/' || button === '*' || button === '-' || button === '+' ?
@@ -139,5 +140,6 @@ export default function App() {
         )}
       </View>
     </View>
+    </ScrollView>
   );
 }
