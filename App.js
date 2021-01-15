@@ -9,6 +9,9 @@ export default function App() {
   const [lastNumber, setLastNumber] = useState('');
   const buttons = ['C', 'DEL', '/', 7, 8, 9, '*', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '=']
 
+ 
+
+
   function calculator() {
     const operator = currentNumber[currentNumber.length-1];
     if(operator === '/', operator === '*', operator === '-', operator === '+', operator === '.') {
@@ -53,6 +56,7 @@ export default function App() {
       minHeight: '35%',
       alignItems: 'flex-end',
       justifyContent: 'flex-end',
+      aspectRatio: 4 / 2,
     },
     resultText: {
       color: darkMode ? '#FFF' : '#000',
@@ -87,8 +91,9 @@ export default function App() {
       backgroundColor: darkMode ? '#121212' : '#FFF',
       alignItems: 'center',
       justifyContent: 'center',
-      minWidth: 82,
-      minHeight: 82,
+      display: 'flex',
+      minWidth: 75,
+      minHeight: 85,
       flex: 2,
       margin: 1,
       borderRadius: 50,
@@ -101,7 +106,7 @@ export default function App() {
 
   return(
     <ScrollView>
-    <View>
+    <View style={{flex: 1}}> 
       <View style={styles.results}>
       <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
         <TouchableOpacity style={styles.themeButton}>
@@ -137,6 +142,7 @@ export default function App() {
             <Text style={styles.textButton}>{button}</Text>
           </TouchableOpacity>
         )}
+    
       </View>
     </View>
     </ScrollView>
