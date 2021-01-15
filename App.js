@@ -79,17 +79,16 @@ export default function App() {
     },
     buttons: {
       backgroundColor: darkMode ? '#121212' : '#FFF',
-      height: '100%',
       flexDirection: 'row',
       flexWrap: 'wrap',
-     
+      display: 'flex',
     },
     button: {
-      borderColor: darkMode ? '#3f4d5b' : '#e1e1e1',
+      backgroundColor: darkMode ? '#121212' : '#FFF',
       alignItems: 'center',
       justifyContent: 'center',
       minWidth: 82,
-      minHeight: 90,
+      minHeight: 82,
       flex: 2,
       margin: 1,
       borderRadius: 50,
