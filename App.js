@@ -1,150 +1,223 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
-import { useState } from 'react';
-import { Feather } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar } from 'react-native';
+import { Feather } from '@expo/vector-icons'; 
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [currentNumber, setCurrentNumber] = useState('');
-  const [lastNumber, setLastNumber] = useState('');
-  const buttons = ['C', 'DEL', '/', 7, 8, 9, '*', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '=']
 
- 
+    const [ lastNumber, setLastNumber ] = useState();
+    const [ currentNumber, setCurrentNumber ] = useState('');
+    const [ darkMode, setDarkMode ] = useState(true);
+    const operators = [ "C", "DEL", "%", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", "+/-", 0, ".", "=" ];
 
 
-  function calculator() {
-    const operator = currentNumber[currentNumber.length-1];
-    if(operator === '/', operator === '*', operator === '-', operator === '+', operator === '.') {
-      setCurrentNumber(currentNumber)
-      return
-    }
-    else {
-      let result = eval(currentNumber).toString();
-      setCurrentNumber(result)
-      return
-    }
-  }
+       const styles = StyleSheet.create({
+      main: {
+        flex: 1,
+        display: 'flex',
+      },
 
-  function handleInput(buttonPressed) {
-    if(buttonPressed  === '+' || buttonPressed === '-' || buttonPressed === '*' || buttonPressed === '/') {
-      setCurrentNumber(currentNumber + buttonPressed)
-      return
-    }
-    else if (buttonPressed === 1 || buttonPressed === 2 || buttonPressed === 3 || buttonPressed === 4 || buttonPressed === 5 ||
-            buttonPressed === 6 || buttonPressed === 7 || buttonPressed === 8 || buttonPressed === 9 || buttonPressed === 0 || buttonPressed === '.' ) {
-    }
-    switch(buttonPressed) {
-      case 'DEL':
-        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 1)))
-        return
-      case 'C':
-        setLastNumber('')
-        setCurrentNumber('')
-        return
-      case '=':
-        setLastNumber(currentNumber + '=')
-        calculator()
-        return
-    }
-    setCurrentNumber(currentNumber + buttonPressed)
-  }
+      resultContainer: {
+        backgroundColor: darkMode ? 'white' : 'black',
+        flex: 2,
+        maxWidth: '100%',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+      },
 
-  const styles = StyleSheet.create({
-    results: {
-      backgroundColor: darkMode ? '#121212' : '#FFF',
-      maxWidth: '100%',
-      minHeight: '35%',
-      alignItems: 'flex-end',
-      justifyContent: 'flex-end',
-      aspectRatio: 4 / 2,
-    },
-    resultText: {
-      color: darkMode ? '#FFF' : '#000',
-      maxHeight: 45,
-      margin: 15,
-      fontSize: 35,
-    },
-    historyText: {
-      color: darkMode ? '#FFF' : '#000',
-      fontSize: 28,
-      marginRight: 10,
-      alignSelf: 'flex-end',
-    },
-    themeButton: {
-      backgroundColor: darkMode ? '#FFF' : '#E5E5E5',
-      alignSelf: 'flex-start',
-      bottom: '10%',
-      margin: 15,
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: 50,
-      height: 50,
-      borderRadius: 25,
-    },
-    buttons: {
-      backgroundColor: darkMode ? '#121212' : '#FFF',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      display: 'flex',
-    },
-    button: {
-      backgroundColor: darkMode ? '#121212' : '#FFF',
-      alignItems: 'center',
-      justifyContent: 'center',
-      display: 'flex',
-      minWidth: 75,
-      minHeight: 85,
-      flex: 2,
-      margin: 1,
-      borderRadius: 50,
-    },
-    textButton: {
-      color: darkMode ? '#FFF' : '#000',
-      fontSize: 28,
-    }
-  })
+      themeTouchable : {
+        justifyContent: "flex-end",
+        alignSelf: "flex-start",
+        marginLeft: 15,
+      },
+      
+      theme: {
+        color: darkMode ? "#000" : "#FFF",
+        width: 50,
+        height: 50,
+        borderRadius: 40,
+        bottom: "5%",
+        textAlign: "center",
+        textAlignVertical: "center"
+      },
 
-  return(
-    <ScrollView>
-    <View style={{flex: 1}}> 
-      <View style={styles.results}>
-      <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
-        <TouchableOpacity style={styles.themeButton}>
-          <Feather name={darkMode ? 'sun' : 'moon'} size={30} color={darkMode ? 'black' : 'black' } onPress={() => darkMode ? setDarkMode(false) : setDarkMode(true)}/>
-        </TouchableOpacity>
-        <Text style={styles.historyText}>{lastNumber}</Text>
-        <Text style={styles.resultText}>{currentNumber}</Text>
-      </View>
-
-      <View style={styles.buttons}>
-        {buttons.map((button) =>
-          button === '=' || button === '/' || button === '*' || button === '-' || button === '+' ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: '#007AFF'} ]} onPress={() => handleInput(button)}>
-            <Text style={[styles.textButton, {color: 'white', fontSize: 28} ]}>{button}</Text>
-          </TouchableOpacity>
-          :
-          button === 0 ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#282828' : '#DADBE0' : darkMode === true ? '#414853' : '#ededed', minWidth: '36%'} ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
-          </TouchableOpacity>
-          :
-          button === '.' || button === 'DEL' ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: button === ',' ? darkMode ? '#282828' : '#DADBE0' : darkMode === true ? '#282828' : '#DADBE0', minWidth: '37%'} ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
-          </TouchableOpacity>
-          :
-          button === 'C' ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#282828' : '#FFF' : darkMode === true ? '#FF024A' : '#FF024A', minWidth: '36%'} ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
-          </TouchableOpacity>
-          :
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#282828' : '#DADBE0' : darkMode === true ? '#414853' : '#ededed' } ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
-          </TouchableOpacity>
-        )}
+      textContainer: {
+        minHeight: 105,
+        justifyContent: "flex-end"
+      },
     
+      textHistory: {
+        color: darkMode ? "#000" : "#FFF",
+        fontSize: 20,
+        paddingRight: 15,
+        alignSelf: "flex-end",
+      },
+    
+      textResult: {
+        color: darkMode ? "#000" : "#FFF",
+        fontSize: 26,
+        paddingRight: 15,
+        alignSelf: "flex-end",
+     
+      },
+    
+      operatorContainer: {
+        backgroundColor: darkMode ? "#FFF" : "#000",
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+      },
+      
+      operators: {
+        flex: 2,
+        minHeight: 85,
+        minWidth: 81,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 50,
+        margin: 1,
+      }, 
+      
+      operatorsText: {
+        color: darkMode ?  "#000" : "#FFF",
+        fontSize: 22,
+      }
+    });
+    
+
+    function handleButtonPress(buttonPressed){
+      if(buttonPressed == "+" || buttonPressed == "-" || buttonPressed == "*" || buttonPressed == "/"){
+        
+        if(currentNumber.toString().indexOf("+") == -1 && currentNumber.toString().indexOf("-") == -1 && currentNumber.toString().indexOf("*") == -1 && currentNumber.toString().indexOf("/") == -1){
+          setCurrentNumber(currentNumber + " " + buttonPressed + " ");
+          return;
+        }else{
+          const newNumberCurrent = currentNumber.toString().substring(0, currentNumber.length - 3);
+          setCurrentNumber('');
+          setCurrentNumber(newNumberCurrent + " " + buttonPressed + " ");
+          return;
+        }
+      }
+
+      switch(buttonPressed){
+        case 'C':
+          setLastNumber('');
+          setCurrentNumber('');
+        return;
+        case 'DEL':
+          setCurrentNumber(currentNumber.slice(0, -1));
+        return;
+        case '=':
+          setLastNumber(currentNumber + "=");
+          calculate()
+        return;
+        case '+/-':
+          var change = currentNumber * -1;
+          isNaN(change) ? Alert.alert("Invalid Format") : setCurrentNumber(change);
+        return;
+        case '%':
+          var change = currentNumber / 100;
+          isNaN(change) ? Alert.alert("Invalid Format") : setCurrentNumber(change);
+        return;
+      }
+
+     setCurrentNumber(currentNumber + buttonPressed);
+    }
+
+    function calculate(){
+
+     const splitNumbers = currentNumber.toString().split(" ");
+     const firstNumber = parseFloat(splitNumbers[0]);
+     const secondNumber = parseFloat(splitNumbers[2]);
+     const operation = splitNumbers[1];
+
+      if(!isNaN(secondNumber)){
+        switch(operation){
+          case '+':
+            var result = firstNumber + secondNumber;
+            setCurrentNumber(result);
+          return;
+          case '-':
+            var result = firstNumber - secondNumber;
+            setCurrentNumber(result);
+          return;
+          case '*':
+            var result = firstNumber * secondNumber;
+            setCurrentNumber(result);
+          return;
+          case '/':
+            var result = firstNumber / secondNumber;
+            setCurrentNumber(result);
+          return;
+          default: 
+            setLastNumber('');
+            setCurrentNumber('');
+          return;
+        }
+      }else{
+        Alert.alert("Invalid format");
+      }
+    }
+
+  return (
+    <View style={styles.main}>
+     <StatusBar barStyle={darkMode ? 'dark-content' : 'light-content'} />
+      <View 
+        style={styles.resultContainer}>
+        <TouchableOpacity style={styles.themeTouchable}>
+          <Feather onPress={
+            () => {
+              darkMode === true ? 
+                setDarkMode (false) 
+              : 
+                setDarkMode(true)
+            }}
+            style={styles.theme} 
+            name={darkMode === true ? "moon" : "sun"} 
+            size={30} 
+          />
+        </TouchableOpacity>
+
+        <View style={styles.textContainer}>
+          <Text style={styles.textHistory}>
+            {lastNumber}
+          </Text>
+          <Text style={styles.textResult}>
+            {currentNumber}
+          </Text>
+
+        </View>
+      </View>
+    
+      <View style={styles.operatorContainer}>
+        
+          {
+            operators.map((char) => (
+               (char) === 'C' ?
+                <TouchableOpacity
+                  key={char} 
+                  style={[styles.operators, {backgroundColor: darkMode ? '#FF024A' : '#FF024A'}]}
+                  onPress={() => handleButtonPress(char)}
+                >
+                  <Text style={styles.operatorsText}>{char}</Text>
+                </TouchableOpacity>
+              :
+                <TouchableOpacity 
+                  key={char} 
+                  style={[styles.operators, {
+                    backgroundColor: typeof(char) === 'number'  || (char) === 'DEL'  || (char) === '%' || (char) === '+/-' || (char) === '.'  ? 
+                      darkMode ? '#DADBE0' : '#282828'
+                      :
+                      darkMode ? '#007AFF' : '#007AFF'
+                  
+                  }]}
+                  onPress={() => handleButtonPress(char)}
+                >
+                  <Text style={styles.operatorsText}>{char}</Text>
+                </TouchableOpacity>
+
+            ))
+          }
+
       </View>
     </View>
-    </ScrollView>
-  );
+    );
 }
