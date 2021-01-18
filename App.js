@@ -22,6 +22,7 @@ export default function App() {
         maxWidth: '100%',
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
+        
       },
 
       themeTouchable : {
@@ -34,7 +35,7 @@ export default function App() {
         color: darkMode ? "#000" : "#FFF",
         width: 50,
         height: 50,
-        borderRadius: 40,
+        borderRadius: 50,
         bottom: "5%",
         textAlign: "center",
         textAlignVertical: "center"
@@ -47,14 +48,14 @@ export default function App() {
     
       textHistory: {
         color: darkMode ? "#000" : "#FFF",
-        fontSize: 20,
+        fontSize: 26,
         paddingRight: 15,
         alignSelf: "flex-end",
       },
     
       textResult: {
         color: darkMode ? "#000" : "#FFF",
-        fontSize: 26,
+        fontSize: 36,
         paddingRight: 15,
         alignSelf: "flex-end",
      
@@ -68,12 +69,13 @@ export default function App() {
       
       operators: {
         flex: 2,
-        minHeight: 85,
-        minWidth: 81,
+        minHeight: 80,
+        minWidth: 80,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 50,
-        margin: 1,
+        margin: 5,
+        marginBottom: 2,
       }, 
       
       operatorsText: {
