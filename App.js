@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Dimensions, StatusBar } from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
 
 export default function App() {
@@ -22,7 +22,6 @@ export default function App() {
         maxWidth: '100%',
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
-        
       },
 
       themeTouchable : {
@@ -35,7 +34,7 @@ export default function App() {
         color: darkMode ? "#000" : "#FFF",
         width: 50,
         height: 50,
-        borderRadius: 50,
+        borderRadius: 40,
         bottom: "5%",
         textAlign: "center",
         textAlignVertical: "center"
@@ -48,14 +47,14 @@ export default function App() {
     
       textHistory: {
         color: darkMode ? "#000" : "#FFF",
-        fontSize: 26,
+        fontSize: 20,
         paddingRight: 15,
         alignSelf: "flex-end",
       },
     
       textResult: {
         color: darkMode ? "#000" : "#FFF",
-        fontSize: 36,
+        fontSize: 26,
         paddingRight: 15,
         alignSelf: "flex-end",
      
@@ -65,17 +64,19 @@ export default function App() {
         backgroundColor: darkMode ? "#FFF" : "#000",
         flexDirection: 'row',
         flexWrap: 'wrap',
+      padding: 20,
+      justifyContent: 'center',
+      lignItems: 'flex-end',
       },
       
       operators: {
         flex: 2,
-        minHeight: 80,
-        minWidth: 80,
+        minHeight: Dimensions.get('window').width/5,
+        minWidth: Dimensions.get('window').width/5,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 50,
-        margin: 5,
-        marginBottom: 2,
+        margin: 2,
       }, 
       
       operatorsText: {
