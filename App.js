@@ -71,7 +71,7 @@ export default function App() {
       
       operators: {
         flex: 2,
-        minHeight: Dimensions.get('window').width/5,
+        minHeight: Dimensions.get('window').height/9.5,
         minWidth: Dimensions.get('window').width/5,
         alignItems: "center",
         justifyContent: "center",
