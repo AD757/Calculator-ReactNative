@@ -25,9 +25,11 @@ export default function App() {
       },
 
       themeTouchable : {
+        position: 'absolute', 
         justifyContent: "flex-end",
         alignSelf: "flex-start",
         marginLeft: 15,
+        bottom: '60%',
       },
       
       theme: {
@@ -35,7 +37,6 @@ export default function App() {
         width: 50,
         height: 50,
         borderRadius: 40,
-        bottom: "5%",
         textAlign: "center",
         textAlignVertical: "center"
       },
@@ -64,13 +65,13 @@ export default function App() {
         backgroundColor: darkMode ? "#FFF" : "#000",
         flexDirection: 'row',
         flexWrap: 'wrap',
-      padding: 20,
-      justifyContent: 'center',
-      lignItems: 'flex-end',
+        padding: 20,
+        justifyContent: 'center',
+        lignItems: 'flex-end',
       },
       
       operators: {
-        flex: 2,
+        flex: 1,
         minHeight: Dimensions.get('window').height/9.5,
         minWidth: Dimensions.get('window').width/5,
         alignItems: "center",
@@ -81,7 +82,7 @@ export default function App() {
       
       operatorsText: {
         color: darkMode ?  "#000" : "#FFF",
-        fontSize: 22,
+        fontSize: 28,
       }
     });
     
