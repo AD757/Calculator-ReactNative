@@ -29,7 +29,7 @@ export default function App() {
         justifyContent: "flex-end",
         alignSelf: "flex-start",
         marginLeft: 15,
-        bottom: '60%',
+        bottom: '65%',
       },
       
       theme: {
@@ -48,14 +48,14 @@ export default function App() {
     
       textHistory: {
         color: darkMode ? "#000" : "#FFF",
-        fontSize: 20,
+        fontSize: 26,
         paddingRight: 15,
         alignSelf: "flex-end",
       },
     
       textResult: {
         color: darkMode ? "#000" : "#FFF",
-        fontSize: 26,
+        fontSize: 36,
         paddingRight: 15,
         alignSelf: "flex-end",
      
@@ -72,7 +72,7 @@ export default function App() {
       
       operators: {
         flex: 1,
-        minHeight: Dimensions.get('window').height/9.5,
+        minHeight: Dimensions.get('window').height/10,
         minWidth: Dimensions.get('window').width/5,
         alignItems: "center",
         justifyContent: "center",
@@ -82,7 +82,7 @@ export default function App() {
       
       operatorsText: {
         color: darkMode ?  "#000" : "#FFF",
-        fontSize: 28,
+        fontSize: 24,
       }
     });
     
@@ -178,6 +178,7 @@ export default function App() {
             name={darkMode === true ? "moon" : "sun"} 
             size={30} 
           />
+          
         </TouchableOpacity>
 
         <View style={styles.textContainer}>
